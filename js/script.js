@@ -1,18 +1,37 @@
-//Made by: Aiden McLeod
-//Made in: March 2022
+// Aiden McLeod
+// ICS2O-Unit5-06-HTML
+// May 6 2022
 
 'use strict'
 /**
- * This function calculates area of a sphere.
+ * Check service worker.
  */
-function calculate() {
-  // input
-  const radius = parseInt(document.getElementById('radius').value)
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register("/ICS2O-Unit5-06-HTML/sw.js", {
+    scope: "/ICS2O-Unit5-06-HTML/",
+  })
+}
 
-  // process
+/**
+ * Calculates the product of two numbers the user provides.
+ */
+function onButtonClick() {
+  const numberOne = parseInt(document.getElementById("numberOne").value)
+  var numberTwo = parseInt(document.getElementById("numberTwo").value)
+  var result = 0
 
-  const volume = (4/3)* Math.PI * Math.pow(radius, 3);
-
-  // output
-  document.getElementById('volume').innerHTML = 'Volume is: ' + volume.toFixed(2) + ' cm³'
+  if (numberOne != 0 && numberTwo >= 0) {
+    while (numberTwo > 0) {
+      // Calculation for + or - times + numbers
+      result = result + numberOne
+      numberTwo = numberTwo - 1
+    }
+  } else if (numberTwo < 0) {
+    while (numberTwo != 0) {
+      // Calculation for + or - times - numbers
+      result = result - numberOne
+      numberTwo = numberTwo + 1
+    }
+  }
+  document.getElementById("result").innerHTML = "<h5>The product of these numbers is " + result + "</h5>"
 }
